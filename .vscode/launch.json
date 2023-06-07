@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "Debug with OpenOCD",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f4x.cfg"
+            ],
+            "device": "STM32F401CC",
+            "interface": "swd",
+            "runToEntryPoint": "main",
+            "preLaunchTask": "Build",
+            "liveWatch": {
+                "enabled": true,
+                "samplesPerSecond": 2
+            }
+        }
+    ]
+}

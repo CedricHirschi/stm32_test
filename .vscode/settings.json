@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "stm32f4xx_hal_def.h": "c",
+        "stm32f4xx.h": "c",
+        "stdio.h": "c",
+        "main.h": "c",
+        "cstdlib": "c"
+    },
+    "cortex-debug.gdbPath": "C:/arm-none-eabi-gcc/12.2/bin/arm-none-eabi-gdb.exe",
+    "cortex-debug.stutilPath": "C:/Program Files/STMicroelectronics/stlink-1.7.0-i686-w64-mingw32/bin/st-util.exe"
+}
