@@ -77,7 +77,8 @@ uint8_t I2C_is_init(I2C_HandleTypeDef *i2c_handle)
 
 HAL_StatusTypeDef mcp4725_init(I2C_HandleTypeDef *i2c_handle, const uint8_t address)
 {
-  return HAL_I2C_Master_Transmit(i2c_handle, address << 1, (uint8_t*){0x00, 0x00}, 2, 1000);
+  uint8_t data[] = {0x00, 0x00};
+  return HAL_I2C_Master_Transmit(i2c_handle, address << 1, data, 2, 1000);
 }
 
 HAL_StatusTypeDef mcp4725_write(I2C_HandleTypeDef *i2c_handle, const uint8_t address, const uint16_t value)
