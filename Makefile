@@ -235,7 +235,7 @@ $(BUILD_DIR): $(BUILD_MAIN)
 #######################################
 clean:
 	@echo [Cleaning]
-	$(RMDIR) build
+	$(RMDIR) build || exit 0
   
 #######################################
 # dependencies

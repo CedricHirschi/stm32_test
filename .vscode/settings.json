@@ -6,6 +6,10 @@
         "main.h": "c",
         "cstdlib": "c"
     },
-    "cortex-debug.gdbPath": "C:/arm-none-eabi-gcc/12.2/bin/arm-none-eabi-gdb.exe",
-    "cortex-debug.stutilPath": "C:/Program Files/STMicroelectronics/stlink-1.7.0-i686-w64-mingw32/bin/st-util.exe"
+    // if arm-none-eabi-gcc and st-util are in the path, then these can be commented out
+    // "cortex-debug.gdbPath": "C:/arm-none-eabi-gcc/12.2/bin/arm-none-eabi-gdb.exe",
+    // "cortex-debug.stutilPath": "C:/Program Files/STMicroelectronics/stlink-1.7.0-i686-w64-mingw32/bin/st-util.exe",
+
+    // turn of static analysis for C/C++ files since this doesn't work with the STM32 headers
+    "C_Cpp.codeAnalysis.clangTidy.enabled": false
 }
