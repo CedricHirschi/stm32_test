@@ -176,8 +176,15 @@ LIBS = -lc -lm -lnosys
 LIBDIR = 
 LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
 
+
+ifeq ($(OS), Windows_NT)
+RMDIR = rmdir /S /Q
+else
+RMDIR = rm -rf
+endif
+
 .SILENT:
-export MAKEFLAGS += -j12
+export MAKEFLAGS += -j
 
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
@@ -228,7 +235,7 @@ $(BUILD_DIR): $(BUILD_MAIN)
 #######################################
 clean:
 	@echo [Cleaning]
-	rmdir /S /Q build
+	$(RMDIR) build
   
 #######################################
 # dependencies
@@ -238,4 +245,5 @@ clean:
 # *** EOF ***
 
 flash: all
-	st-flash --reset write $(BUILD_DIR)/$(TARGET).bin 0x8000000
+	st-flash --reset write $(BUILD_DIR)/$(TARGET).bin 0x8000000 || echo Flashing failed! && exit 1
+	@echo Flashed successfully!
