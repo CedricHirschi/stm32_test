@@ -189,6 +189,8 @@ export MAKEFLAGS += -j
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
 	@echo Compilation done!
+	zip -r backup.zip . -x "build/*" -q
+	@echo Backup done!
 
 
 #######################################
@@ -247,3 +249,7 @@ clean:
 flash: all
 	st-flash --reset write $(BUILD_DIR)/$(TARGET).bin 0x8000000 || echo Flashing failed! && exit 1
 	@echo Flashed successfully!
+
+erase:
+	st-flash erase || echo Flash erase failed! && exit 1
+	@echo Flash erased successfully!
