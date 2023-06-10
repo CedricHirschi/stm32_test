@@ -136,22 +136,17 @@ int main(void)
 	/* USER CODE BEGIN WHILE */
 	while (1)
 	{
-		printf("%d\t%d\r\n", dac_value, HAL_ADC_GetValue(&hadc1));
+		printf("%d\t%u\r\n", dac_value, (uint16_t)HAL_ADC_GetValue(&hadc1));
 
-		dac_value += 32;
-		if (dac_value > 4095)
-		{
+		if (++dac_value > 4095)
 			dac_value = 0;
-		}
 
 		if (mcp4725_write(&hi2c1, 0x60, dac_value) != HAL_OK)
-		{
 			printf("MCP4725 DAC write failed\r\n");
-		}
 
 		HAL_ADC_Start(&hadc1);
 
-		HAL_Delay(1);
+		// HAL_Delay(1);
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */

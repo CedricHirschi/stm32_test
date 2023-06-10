@@ -1,2 +1,5 @@
 # build folder
 build/
+
+# backup files (zip)
+*.zip
