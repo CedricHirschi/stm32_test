@@ -183,7 +183,10 @@ else
 RMDIR = rm -rf
 endif
 
+ifneq ($(V), 1)
 .SILENT:
+endif
+
 export MAKEFLAGS += -j
 
 # default action: build all
@@ -253,3 +256,4 @@ flash: all
 erase:
 	st-flash erase || echo Flash erase failed! && exit 1
 	@echo Flash erased successfully!
+	
