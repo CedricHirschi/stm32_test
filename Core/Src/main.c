@@ -146,6 +146,10 @@ int main(void)
 
 		HAL_ADC_Start(&hadc1);
 
+		HAL_GPIO_TogglePin(LED_BUILTIN_GPIO_Port, LED_BUILTIN_Pin);
+
+		HAL_Delay(100);
+
 		// HAL_Delay(1);
 		/* USER CODE END WHILE */
 

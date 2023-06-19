@@ -13,7 +13,7 @@
 ######################################
 # target
 ######################################
-TARGET = Blackpill_test
+TARGET = stm32_test
 
 
 ######################################
@@ -192,6 +192,8 @@ export MAKEFLAGS += -j
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
 	@echo Compilation done!
+
+backup:
 	zip -r backup.zip . -x "build/*" -q
 	@echo Backup done!
 
@@ -252,6 +254,14 @@ clean:
 flash: all
 	st-flash --reset write $(BUILD_DIR)/$(TARGET).bin 0x8000000 || echo Flashing failed! && exit 1
 	@echo Flashed successfully!
+
+flash_ocd: all
+	openocd -f openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
+
+flash_pyocd: all
+	@echo [Flashing]  $<
+	pyocd load -t stm32f401ccux -f 4000k $(BUILD_DIR)/$(TARGET).elf || echo Flashing failed! && exit 1
+	@echo done!
 
 erase:
 	st-flash erase || echo Flash erase failed! && exit 1

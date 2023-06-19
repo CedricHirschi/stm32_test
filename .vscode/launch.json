@@ -3,7 +3,7 @@
         {
             "name": "Debug with OpenOCD",
             "cwd": "${workspaceFolder}",
-            "executable": "${workspaceFolder}/build/${workspaceFolderBasename}.elf",
+            "executable": "${workspaceFolder}/build/debug/${workspaceFolderBasename}.elf",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "openocd",
