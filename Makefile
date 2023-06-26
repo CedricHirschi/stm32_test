@@ -252,11 +252,14 @@ clean:
 # *** EOF ***
 
 flash: all
+	@echo [Flashing]  $<
 	st-flash --reset write $(BUILD_DIR)/$(TARGET).bin 0x8000000 || echo Flashing failed! && exit 1
-	@echo Flashed successfully!
+	@echo done!
 
 flash_ocd: all
-	openocd -f openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
+	@echo [Flashing]  $<
+	openocd -f openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit" || echo Flashing failed! && exit 1
+	@echo done!
 
 flash_pyocd: all
 	@echo [Flashing]  $<
