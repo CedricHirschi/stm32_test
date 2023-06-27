@@ -259,18 +259,18 @@ flash: all
 
 flash_ocd: all
 	@echo [Flashing]  $<
-	openocd -f openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit" || echo Flashing failed! && exit 1
+	openocd -f openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).bin verify reset exit" || echo Flashing failed! && exit 1
 	@echo done!
 
 flash_pyocd: all
 	@echo [Flashing]  $<
 	pyocd load -t stm32f401ccux -f 4000k $(BUILD_DIR)/$(TARGET).bin || echo Flashing failed! && exit 1
-	@echo Flashed successfully!
+	@echo done!
 
 erase:
 	@echo [Erasing]  $<
 	st-flash erase || echo Flash erase failed! && exit 1
-	@echo Erased successfully!
+	@echo done!
 
 size:
 	$(SZ) $(BUILD_MAIN)/debug/$(TARGET).elf $(BUILD_MAIN)/release/$(TARGET).elf -G -x
