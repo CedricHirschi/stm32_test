@@ -65,7 +65,7 @@ static void MX_ADC1_Init(void);
 /* USER CODE BEGIN 0 */
 int _write(int file, char *ptr, int len)
 {
-	// CDC_Transmit_FS((uint8_t*)ptr, len);
+	CDC_Transmit_FS((uint8_t *)ptr, len);
 	HAL_UART_Transmit(&huart1, (uint8_t *)ptr, len, 1000);
 	return len;
 }
