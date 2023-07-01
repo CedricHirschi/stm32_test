@@ -259,7 +259,7 @@ flash: all
 
 flash_ocd: all
 	@echo [Flashing]  $<
-	openocd -f openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).bin verify reset exit" || echo Flashing failed! && exit 1
+	openocd -f openocd.cfg -c "program $(BUILD_DIR)/$(TARGET).bin reset exit" || echo Flashing failed! && exit 1
 	@echo done!
 
 flash_pyocd: all
