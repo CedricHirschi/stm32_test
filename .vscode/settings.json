@@ -4,7 +4,9 @@
         "stm32f4xx.h": "c",
         "stdio.h": "c",
         "main.h": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "usb_device.h": "c",
+        "usbd_cdc_if.h": "c"
     },
     // if arm-none-eabi-gcc and st-util are in the path, then these can be commented out
     // "cortex-debug.gdbPath": "C:/arm-none-eabi-gcc/12.2/bin/arm-none-eabi-gdb.exe",
